@@ -3,7 +3,7 @@ after_script:
 
 before_script:
   - cd "$VERSION"
-  - IMAGE="dash-core:${VERSION/\//-}"
+  - IMAGE="sparks-core:${VERSION/\//-}"
 
 env:
   - VERSION=0.12
@@ -13,6 +13,6 @@ language: bash
 
 script:
   - docker build -t "$IMAGE" .
-  - docker run "$IMAGE" --version | grep "Dash Core"
+  - docker run "$IMAGE" --version | grep "Sparks Core"
 
 services: docker
