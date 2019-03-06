@@ -2,24 +2,24 @@
 set -e
 
 if [ $(echo "$1" | cut -c1) = "-" ]; then
-  echo "$0: assuming arguments for dashd"
+  echo "$0: assuming arguments for sparksd"
 
-  set -- dashd "$@"
+  set -- sparksd "$@"
 fi
 
-if [ $(echo "$1" | cut -c1) = "-" ] || [ "$1" = "dashd" ]; then
-  mkdir -p "$DASH_DATA"
-  chmod 700 "$DASH_DATA"
-  chown -R dash "$DASH_DATA"
+if [ $(echo "$1" | cut -c1) = "-" ] || [ "$1" = "sparksd" ]; then
+  mkdir -p "$SPARKS_DATA"
+  chmod 700 "$SPARKS_DATA"
+  chown -R sparks "$SPARKS_DATA"
 
-  echo "$0: setting data directory to $DASH_DATA"
+  echo "$0: setting data directory to $SPARKS_DATA"
 
-  set -- "$@" -datadir="$DASH_DATA"
+  set -- "$@" -datadir="$SPARKS_DATA"
 fi
 
-if [ "$1" = "dashd" ] || [ "$1" = "dash-cli" ] || [ "$1" = "dash-tx" ]; then
+if [ "$1" = "sparksd" ] || [ "$1" = "sparks-cli" ] || [ "$1" = "sparks-tx" ]; then
   echo
-  exec gosu dash "$@"
+  exec gosu sparks "$@"
 fi
 
 echo

@@ -1,10 +1,8 @@
 FROM debian:stable-slim
 
-LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
-  maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)"
+LABEL maintainer.0="Mircea Rila (@zaWasp)"
 
-RUN useradd -r dash \
+RUN useradd -r sparks \
   && apt-get update -y \
   && apt-get install -y curl gnupg unzip \
   && apt-get clean \
@@ -28,18 +26,15 @@ RUN curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/dow
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
-ENV DASH_VERSION=0.12.2.3
-ENV DASH_FOLDER_VERSION=0.12.2
-ENV DASH_DATA=/home/dash/.dashcore \
-  PATH=/opt/dashcore-${DASH_FOLDER_VERSION}/bin:$PATH
-RUN curl -SLO https://github.com/dashpay/dash/releases/download/v${DASH_VERSION}/SHA256SUMS.asc \
-  && curl -SLO https://github.com/dashpay/dash/releases/download/v${DASH_VERSION}/dashcore-${DASH_VERSION}-linux64.tar.gz \
-  && curl -SLO https://github.com/dashpay/dash/releases/download/v${DASH_VERSION}/dashcore-${DASH_VERSION}-linux64.tar.gz.asc \
-  && gpg --verify dashcore-${DASH_VERSION}-linux64.tar.gz.asc \
-  && tar -xzf dashcore-${DASH_VERSION}-linux64.tar.gz -C /opt \
+ENV SPARKS_VERSION=0.12.3.5
+ENV SPARKS_FOLDER_VERSION=0.12.3
+ENV SPARKS_DATA=/home/sparks/.sparkscore \
+  PATH=/opt/sparkscore-${SPARKS_FOLDER_VERSION}/bin:$PATH
+RUN curl -SLO https://github.com/sparkspay/sparks/releases/download/v${SPARKS_VERSION}/sparkscore-${SPARKS_VERSION}-x86_64-linux-gnu.tar.gz \
+  && tar -xzf sparkscore-${SPARKS_VERSION}-x86_64-linux-gnu.tar.gz -C /opt \
   && rm *.tar.gz
 
-VOLUME ["/home/dash/.dashcore"]
+VOLUME ["/home/sparks/.sparkscore"]
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
@@ -47,4 +42,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 9998 9999 18332 19998 19999
 
-CMD ["dashd"]
+CMD ["sparksd"]
