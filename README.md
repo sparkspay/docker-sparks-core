@@ -6,8 +6,8 @@ A sparks Core docker image.
 
 ## Tags
 
-- `0.12.3.5-alpine`, `0.12-alpine`, `alpine`, `latest` ([0.12/alpine/Dockerfile](https://github.com/sparkspay/docker-sparks-core/blob/master/0.12/alpine/Dockerfile))
-- `0.12.3.5`, `0.12`  ([0.12/Dockerfile](https://github.com/sparkspay/docker-sparks-core/blob/master/0.12/Dockerfile))
+- `0.12.3.6-alpine`, `0.12-alpine`, `alpine`, `latest` ([0.12/alpine/Dockerfile](https://github.com/sparkspay/docker-sparks-core/blob/master/0.12/alpine/Dockerfile))
+- `0.12.3.6`, `0.12`  ([0.12/Dockerfile](https://github.com/sparkspay/docker-sparks-core/blob/master/0.12/Dockerfile))
 
 ## Usage
 
